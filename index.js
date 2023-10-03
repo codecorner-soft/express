@@ -11,7 +11,11 @@ const app = express();
 
 // home page route
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello G!');
+});
+
+app.get('/hello/', (req, res) => {
+    res.send(`Hello from the ${req.url} path`);
 });
 
 // start server
