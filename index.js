@@ -18,6 +18,8 @@ app.get('/hello/', (req, res) => {
     res.send(`Hello from the ${req.url} path`);
 });
 
+app.use(express.static( 'static' ));
+
 // start server
 app.listen(cfg.port, () => {
     console.log(`Example app listening at http://localhost:${ cfg.port}`);
