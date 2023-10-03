@@ -47,6 +47,11 @@ app.get('/hello/', (req, res) => {
 // server static files
 app.use(express.static( cfg.dir.static ));
 
+// 404 error
+app.use((req,res) => {
+    res.status(404).send('Not found');
+});
+
 // start server
 app.listen(cfg.port, () => {
     console.log(`Example app listening at http://localhost:${ cfg.port}`);
