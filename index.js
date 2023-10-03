@@ -22,6 +22,9 @@ console.dir(cfg, {depth: null, color: true});
 // initialization
 const app = express();
 
+// do not identify Express
+app.disable('x-powered-by');
+
 // console.log each request url (middleware)
 app.use((req, res, next) => {
     console.log(req.url);
