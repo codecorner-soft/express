@@ -18,6 +18,10 @@ const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
 // print the cfg object to the console 
 console.dir(cfg, {depth: null, color: true});
 
+// use EJS templates
+app.set('view engine', 'ejs');
+app.set('vies', cfg.dir.views);
+
 // initialization
 const app = express();
 
