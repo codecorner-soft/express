@@ -39,12 +39,12 @@ app.use((req, res, next) => {
 
 // home page route
 app.get('/', (req, res) => {
-    res.send('Hello G!');
+    res.render('message', {title: 'Hello World!'});
 });
 
 // another route
 app.get('/hello/', (req, res) => {
-    res.send(`Hello from the ${req.url} path`);
+    res.render('message', {title: 'Hello again!'});
 });
 
 // server static assets
@@ -52,7 +52,7 @@ app.use(express.static( cfg.dir.static ));
 
 // 404 error
 app.use((req,res) => {
-    res.status(404).send('Not found');
+    res.status(404).render('message', {title: 'Not found'});
 });
 
 // start server
