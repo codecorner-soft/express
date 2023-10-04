@@ -10,7 +10,8 @@ const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
     port: process.env.port || 3000,
     dir: {
         root: __dirname,
-        static: __dirname + 'static' + sep
+        static: __dirname + 'static' + sep,
+        views : __dirname + 'views' + sep
     }
 };
 
