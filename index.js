@@ -11,7 +11,8 @@ const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
     dir: {
         root: __dirname,
         static: __dirname + 'static' + sep,
-        views : __dirname + 'views' + sep
+        views : __dirname + 'views' + sep,
+        routes: __dirname + 'routes' + sep
     }
 };
 
@@ -39,7 +40,7 @@ app.use(compression());
 
 // home page route
 app.get('/', (req, res) => {
-    res.render('message', {title: 'Hello World!'});
+    res.render('message', {title: 'Hello World!', route: req.url});
 });
 
 // /hello/ route
@@ -59,7 +60,7 @@ app.use(express.static( cfg.dir.static ));
 
 // 404 error
 app.use((req,res) => {
-    res.status(404).render('message', {title: 'Not found'});
+    res.status(404).render('message', {title: 'Not found 404'});
 });
 
 // start server
