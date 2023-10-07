@@ -18,12 +18,12 @@ const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
 // print the cfg object to the console 
 console.dir(cfg, {depth: null, color: true});
 
-// use EJS templates
-app.set('view engine', 'ejs');
-app.set('vies', cfg.dir.views);
-
 // initialization
 const app = express();
+
+// use EJS templates
+app.set('view engine', 'ejs');
+app.set('views', cfg.dir.views);
 
 // do not identify Express
 app.disable('x-powered-by');
@@ -32,19 +32,26 @@ app.disable('x-powered-by');
 app.use(compression());
 
 // console.log each request url (middleware)
-app.use((req, res, next) => {
-    console.log(req.url);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log(req.url);
+// });
+//     next();
 
 // home page route
 app.get('/', (req, res) => {
     res.render('message', {title: 'Hello World!'});
 });
 
-// another route
-app.get('/hello/', (req, res) => {
-    res.render('message', {title: 'Hello again!'});
+// /hello/ route
+import { helloRouter } from './routes/hello.js';
+app.use('/hello', helloRouter);
+
+// return a value for a user
+app.get('/author/:name/book/:bookName', (req, res, next) => {
+    console.log(`author: ${ req.params.name}`);
+    console.log(`book: ${req.params.bookName}`);
+
+    next();
 });
 
 // server static assets
@@ -60,4 +67,4 @@ app.listen(cfg.port, () => {
     console.log(`Example app listening at http://localhost:${ cfg.port}`);
 });
 
-export { cfg, app };
+export { cfg, app, __dirname };
