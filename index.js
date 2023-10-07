@@ -47,6 +47,10 @@ app.get('/', (req, res) => {
 import { helloRouter } from './routes/hello.js';
 app.use('/hello', helloRouter);
 
+// /goodbye/ route
+import { goodbyeRouter } from './routes/goodbye.js';
+app.use('/goodbye', goodbyeRouter);
+
 // return a value for a user
 app.get('/author/:name/book/:bookName', (req, res, next) => {
     console.log(`author: ${ req.params.name}`);
