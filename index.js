@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { dirname, sep } from 'path';
 
 // configuration
-const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
+const __dirname = dirname(fileURLToPath( import.meta.url )) + sep,
     cfg =  {
     port: process.env.port || 3000,
     dir: {
@@ -17,7 +17,7 @@ const __dirname = dirname(fileURLToPath( import.meta.url)) + sep,
 };
 
 // print the cfg object to the console 
-console.dir(cfg, {depth: null, color: true});
+console.dir(cfg, { depth: null, color: true });
 
 // initialization
 const app = express();
@@ -36,7 +36,6 @@ app.use(compression());
 // app.use((req, res, next) => {
 //     console.log(req.url);
 // });
-//     next();
 
 // home page route
 app.get('/', (req, res) => {
@@ -64,7 +63,12 @@ app.use(express.static( cfg.dir.static ));
 
 // 404 error
 app.use((req,res) => {
-    res.status(404).render('message', {title: 'Not found 404'});
+    res.status(404).render(
+        'message', 
+        {
+            title: 'Not found 404',
+             route: '404'
+        });
 });
 
 // start server
